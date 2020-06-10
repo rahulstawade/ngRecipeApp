@@ -1,0 +1,59 @@
+<div class="row">
+    <div class="col-xs-12">
+        <button class="btn btn-success" routerLink="./recipe/new">New Recipe</button>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col-xs-12">
+
+
+        <div class="row">
+            <div class="col-xs-4">
+                <label>Filter : </label>
+           <input type="text" class="form-control" [(ngModel)]="fliterValue">{{fliterValue}}
+            </div>
+
+
+            <!-- <div class="col-xs-2">
+            <div class="btn-group" appDropDown>
+                <button type="button" class="btn btn-primary dropdown-toggle">Select Filter Value
+                    &nbsp; <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a (click)="setFilterPropertyValue('name')" style="cursor: pointer;">Recipe Name</a></li>
+                    <li><a (click)="setFilterPropertyValue('type')" style="cursor: pointer;">Recipe Type</a></li>
+                </ul>
+            </div>
+        </div> -->
+
+        </div>
+        <br>
+
+        <!-- <app-recipe-item *ngFor="let recipe of recipiesList" [recipe]="recipe" (onReciepeHover)="onRecipeSelect(recipe)"> -->
+        <!-- <app-recipe-item *ngFor="let recipe of recipiesList" [recipe]="recipe"></app-recipe-item> -->
+
+
+        <!-- <app-recipe-item *ngFor="let recipe of recipiesList | filter:fliterValue:filterPropertyValue" [recipe]="recipe"> -->
+            <app-recipe-item *ngFor="let recipe of recipiesList | filter:fliterValue:'type'" [recipe]="recipe">
+
+        </app-recipe-item>
+        <!-- <a class="list-group-item clearfix" [appHighlightElement]="['lightblue']" defaultColor="transparent"
+            [recipe]="recipe" routerLinkActive="active"> -->
+
+
+
+
+        <!-- <div class="pull-left">
+                <h4 class="list-group-item-heading">{{recipe.name}}</h4>
+                <p class="list-group-item-text">{{recipe.description}}</p>
+            </div>
+            <span class="pull-right">
+                <img [src]=recipe.imagePath alt="{{recipe.name}}" class="img-responsive" style="max-height: 50px;">
+            </span> -->
+
+
+        <!-- </a> -->
+
+    </div>
+</div>

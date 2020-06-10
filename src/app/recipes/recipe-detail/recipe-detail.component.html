@@ -1,0 +1,105 @@
+<div *ngIf="selectedRecipe; else selectRecipeMSG">
+    <!-- <div class="row" *ngIf="showBackOption">
+        <a class="btn btn-danger" routerLink="../"><span class="glyphicon glyphicon-circle-arrow-left "></span> Back</a>
+        <hr>
+    </div> -->
+
+    <div class="row">
+        <div class="col-xs-6">
+            <img [src]=selectedRecipe.imagePath alt={{selectedRecipe.imagePath}}
+                class="img-responsive img-circle img-thumbnail" style="max-height: 350px;">
+        </div>
+
+        <div class="col-xs-6 text-center">
+
+            <h1 style="font-style: oblique;font-family:'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            color: royalblue;">
+                <span class="glyphicon glyphicon glyphicon-cutlery" style="color: black;"></span>
+                {{selectedRecipe.name}}
+
+            </h1>
+            <p [ngStyle]="{'color': selectedRecipe.type == 'veg' ? 'green' : 'red', 'font-family' : 'fantasy'}">
+                [ <span class="glyphicon glyphicon-record"></span> {{selectedRecipe.type | uppercase}} ]
+            </p>
+
+            <!-- <p *ngIf="selectedRecipe.type == 'veg'; else nonVeg" style="color: green; font-family: fantasy;">
+                [ <span class="glyphicon glyphicon-record"></span> {{selectedRecipe.type}} ]
+            </p>
+
+            <ng-template #nonVeg>
+                <p style="color: red; font-family: fantasy;">
+                    [ <span class="glyphicon glyphicon-record"></span> NON-VEG ]
+                </p>
+            </ng-template> -->
+
+
+            <!-- <div class="col-xs-12"> -->
+
+            <div class="btn-group" appDropDown>
+                <button type="button" class="btn btn-primary dropdown-toggle">Manage Recipe
+                    &nbsp; <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a (click)="addIngredientsToShoppingList()" style="cursor: pointer;">To Shopping List</a></li>
+                    <li><a (click)="editRecipe()" style="cursor: pointer;">Edit Reciepe</a></li>
+                    <li><a (click)="onDeleteRecipe()" style="cursor: pointer;">Delete Reciepe</a></li>
+                </ul>
+            </div>
+
+            <!-- </div> -->
+        </div>
+    </div>
+
+    <!-- <div class="row">
+        <div class="col-xs-12">
+            <h1 style="font-style: oblique;font-family:'Lucida Grande', 'Lucida Sans', Arial, sans-serif;color: royalblue;">{{selectedRecipe.name}}</h1>
+        </div>
+    </div> -->
+
+    <!-- <div class="row">
+        <div class="col-xs-12">
+            <div class="btn-group" appDropDown>
+                <button type="button" class="btn btn-primary dropdown-toggle">Manage Recipe
+                   &nbsp; <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a (click)="addIngredientsToShoppingList()" style="cursor: pointer;">To Shopping List</a></li>
+                    <li><a href="#">Edit Reciepe</a></li>
+                    <li><a href="#">Delete Reciepe</a></li>
+                </ul>
+            </div>
+        </div>
+    </div> -->
+
+
+    <div class="row">
+        <div class="col-xs-12">
+            &nbsp; <h3 style="font-family:Brush Script MT, Brush Script Std, cursive; font-size: xx-large;">"
+                {{selectedRecipe.description}} "</h3>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <ul class="list-group">
+                <li class="list-group-item" *ngFor="let ingredients of selectedRecipe.recipeIngredients">
+                    {{ingredients.name}} - {{ingredients.amount}}
+                </li>
+
+            </ul>
+
+        </div>
+    </div>
+
+</div>
+<ng-template #selectRecipeMSG>
+    <div class="row">
+        <div class="col-xs-12">
+            <h2 style="text-align: center; color: red; font-family: 'Lucida Sans';">Please select a Recipe to View
+                Details</h2>
+        </div>
+    </div>
+
+</ng-template>

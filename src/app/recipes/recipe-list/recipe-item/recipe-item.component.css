@@ -1,0 +1,8 @@
+.grow{
+    -ms-transform: scale(1.1); /* IE 9 */
+    -webkit-transform: scale(1.1); /* Safari 3-8 */
+     transform: scale(1.1);
+     transition-duration: 0.7s;
+     transition-timing-function: linear;
+     transition-delay:10 ms;
+     }

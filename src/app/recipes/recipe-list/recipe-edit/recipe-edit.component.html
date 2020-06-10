@@ -1,0 +1,141 @@
+
+
+<div *ngIf="isForNewRecipe || (!isForNewRecipe && canEditIndicator) else notAllowedToEdit">
+
+
+    <!-- <h2 style="font-family: 'Franklin Gothic Medium';
+    color: royalblue; text-align: center; text-decoration: underline;">Add New Recipe</h2> -->
+
+    <h2 style="font-family:fantasy ;color: royalblue;">{{pageHeaderName}}</h2>
+    <br>
+    <form [formGroup]="recipeForm" (ngSubmit)="onSubmitEvent()">
+
+
+
+        <div class="row">
+            <div class="form-group">
+
+                <div *ngIf="!isForNewRecipe">
+                    <div class="col-xs-2">
+                        <label>Recipe Id :</label>
+                        <input type="text" id="recipeId" class="form-control form-control-sm" formControlName="recipeId"
+                            readonly>
+                        <br>
+                    </div>
+                </div>
+
+                <div formGroupName="recipeData">
+                    <div class="col-xs-6">
+                        <label>Recipe Name :</label>
+                        <input type="text" id="recipeName" class="form-control" formControlName="recipeName">
+                        <span *ngIf="recipeForm.get('recipeData.recipeName').invalid && recipeForm.get('recipeData.recipeName').touched"
+                            style="font-family: monospace; color: red;">Enter Valid Input</span>
+
+                        <br>
+                    </div>
+
+                    <div class="col-xs-2">
+                        <label>Recipe Type :</label>
+
+                        <div class="radio" *ngFor="let recipeType of recipeTypeList" style="font-family: fantasy;">
+                            <label>
+                                <input type="radio" formControlName="recipeType" [value]="recipeType">
+                                &nbsp; {{recipeType}}
+                            </label>
+
+                        </div>
+                    </div>
+
+                    <div class="col-xs-9">
+
+                        <label>Description :</label>
+                        <textarea id="recipeDescription" cols="15" rows="5" class="form-control"
+                            formControlName="recipeDescription"></textarea>
+
+                        <br>
+                    </div>
+
+
+                    
+                    <div class="col-xs-4">
+                        <label for="recipeImagePath">Image URL</label>
+                        <input type="text" id="recipeImagePath" formControlName="recipeImagePath" class="form-control"
+                            #imagePath>
+                    </div>
+
+                    <div class="col-xs-8">
+                        <img [src]="imagePath.value" alt="Image" class="img-responsive img-thumbnail">
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <br>
+
+        <div class="row">
+            <div class="col-xs-12  form-group" formArrayName="ingredientList">
+
+                <label>Ingredients : </label>
+               &nbsp;&nbsp;
+                    <button type="button" class="btn btn-warning btn-sm" (click)="onAddIngredientsInRecipe()">
+                        Add Ingredients
+                    </button>
+               
+                <hr style="height:1px;border:none;color:rgb(55, 24, 231);background-color:rgb(55, 24, 231);">
+
+                <div class="row"
+                    *ngFor="let ingredientControl of recipeForm.get('ingredientList')['controls']; let i = index"
+                    [formGroupName]="i">
+
+                    <div class="col-xs-8">
+                        <input type="text" class="form-control" formControlName="ingredientName">
+                        <span
+                            *ngIf="ingredientControl.controls['ingredientName'].invalid && ingredientControl.controls['ingredientName'].touched"
+                            style="font-family: monospace; color: red;">Enter Valid Name</span>
+
+
+                    </div>
+
+                    <div class="col-xs-2">
+                        <input type="number" class="form-control" formControlName="ingredientQty">
+                        <span
+                            *ngIf="ingredientControl.controls['ingredientQty'].invalid && ingredientControl.controls['ingredientQty'].touched"
+                            style="font-family: monospace; color: red;">Enter Valid Quantity</span>
+
+                    </div>
+                    <div class="col-xs-2">
+                        <button class="btn btn-danger btn-sm" type="button"
+                            (click)="onRemoveIngredientFromRecipe(i)">X</button>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+        </div>
+
+
+
+        <button type="submit" class="btn btn-success" [disabled]="recipeForm.invalid">{{submitButtonName}}</button>
+        &nbsp;
+        <button type="button" class="btn btn-danger" (click)="onCancelEvent()">Cancel</button>
+        &nbsp;
+        <button type="button" class="btn btn-primary" (click)="onResetEvent()">Reset Changes</button>        
+        <br><br>
+
+
+    </form>
+</div>
+
+<ng-template #notAllowedToEdit>
+    <div style="text-align: center;">
+        <h3 style="color: red;">Permission for Edit Not Allowed.</h3>
+        <br>
+        <br>
+        <span class="glyphicon glyphicon-floppy-remove" style="font-size:100px;"></span>
+    </div>
+</ng-template>

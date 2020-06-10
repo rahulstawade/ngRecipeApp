@@ -1,0 +1,50 @@
+<!-- Note :
+    
+    # If we are using property binding to bindValues
+         
+   1> Binds value from a property/Ivar[ie; xyz inside corresponding component.ts] with the @Input custom Property [inside Directive] 
+    [appHighlightElement] = "xyz" -> If xyz is not present inside component.ts gives error  [ivar type inside direcive would be same type as xyz property of component.ts]   
+    
+   2> Binds the String value [ie; 'xyz'] with  @Input custom Property [inside Directive]
+    [appHighlightElement] = " 'xyz' " -> you need to specify value inside '' to indicate it's a string [ivar type inside direcive would string]
+
+   3> If we want to bind string value to @Input custom Property [inside Directive] we can also do below :
+    appHighlightElement = "xyz" -> here appHighlightElement is ivar name or @input alias inside Direcive Now it will consider xyz as string(so no [] brackets, ie; we can omit [] and '')[ivar type inside direcive would string]
+
+   4> If we can to bind array[] of string to @Input custom Property [inside Directive]
+   [appHighlightElement] = "['abc','bcd','cde']"; -> ivar type of directve is string[] in this case    
+    
+    -->
+
+<!-- <a class="list-group-item clearfix" [appHighlightElement]="['lightblue']" defaultColor="transparent"></a> -->
+
+ 
+<a  class="list-group-item clearfix" 
+    [appHighlightElement]="['lightblue','red']"
+    defaultColor="transparent" 
+    [recipe]="recipe"
+    [routerLink] ="[recipe.id]"    
+    routerLinkActive="active">
+    <div class="pull-left">
+        <h4 class="list-group-item-heading" [ngStyle]="{'color': recipe.type === 'veg' ? 'green':'red'}">{{recipe.name}}</h4>
+        <p class="list-group-item-text">{{recipe.description}}</p>
+    </div>
+    <span class="pull-right">
+        <img [src]=recipe.imagePath alt="{{recipe.name}}" class="img-responsive" style="max-height: 50px;">
+    </span>
+</a>
+
+<!-- <a  class="list-group-item clearfix"       
+    [routerLink] ="[recipe.id]"    
+    routerLinkActive="active">
+    <div class="pull-left">
+        <h4 class="list-group-item-heading">{{recipe.name}}</h4>
+        <p class="list-group-item-text">{{recipe.description}}</p>
+    </div>
+    <span class="pull-right">
+        <img [src]=recipe.imagePath alt="{{recipe.name}}" class="img-responsive" style="max-height: 50px;">
+    </span>
+</a> -->
+
+
+<!-- </a> -->

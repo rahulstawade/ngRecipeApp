@@ -1,0 +1,60 @@
+<div class="row">
+
+    <div class="col-xs-12">
+        <form (ngSubmit) = "onSubmitEvent()" #form = "ngForm">
+            <div class="row">
+                <div class="col-sm-5 form-group">
+                    <label for="name">Name</label>
+
+                    <!--Using two way databinding-->
+                    <!-- <input type="text" id="name" name="name" class="form-control" [(ngModel)]="ingredientName"> -->
+
+                    <!--Using Local Reference-->
+                    <!-- <input type="text" id="name" class="form-control" #ingredientName> -->
+
+
+                    <!-- Using Forms - Template Dirven Approach -->
+                    <input type="text" id="name" class="form-control"
+                    ngModel 
+                    name="IngredientName"
+                    required   
+                    #ingredientName = "ngModel">
+                    <span *ngIf="ingredientName.invalid && ingredientName.touched">
+                       Name Field Required
+                    </span>
+
+                    
+                </div>
+                <div class="col-sm-2 form-group">
+                    <label for="amount">Quantity</label>
+
+                     <!--Using two way databinding-->
+                    <!-- <input type="number" id="amount" name="amount" class="form-control" [(ngModel)]="ingredientAmount"> -->
+                    
+                     <!--Using ViewChild so that dom element is accessabel in .ts file-->
+                    <input type="number" id="amount"class="form-control" 
+                    ngModel
+                    name="IngrediantAmount"
+                    required
+                    #ingredientAmount = "ngModel">
+                    <span *ngIf="ingredientAmount.invalid && ingredientAmount.touched">
+                        Amount Field Required
+                     </span>
+               
+                </div>
+            </div>
+            <div class="row">
+                <!-- <div class="col-xs-12">
+                    <button class="btn btn-success" type="submit" (click)="onClickAddIngredient(ingredientName)">Add</button>&nbsp;
+                    <button class="btn btn-danger" type="button">Delete</button>&nbsp;
+                    <button class="btn btn-primary" type="button" (click)="onClickOnClear(ingredientName)">Clear</button>
+                </div> -->
+                <div class="col-xs-12">
+                    <button class="btn btn-success" type="submit" [disabled]="form.invalid">{{buttonName}}</button>&nbsp;
+                    <button class="btn btn-primary" type="button" (click)="onClickOnClear()">Clear</button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>

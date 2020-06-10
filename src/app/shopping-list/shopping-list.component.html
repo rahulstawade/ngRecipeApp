@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="col-md-10">
+        <app-shopping-edit (onAddIngredientEvent)="onIngredientAdd($event)"></app-shopping-edit>
+        <hr>
+        <ul class="list-group" *ngFor="let item of ingredients; let i = index">
+            <div class="row">
+
+                <div class="col-md-6">
+                    <a class="list-group-item" style="cursor: pointer;" (click)="onIngredientSelect(i)">
+                       {{item.name}} &nbsp; &nbsp; -- &nbsp;&nbsp; ({{item.amount}})
+                    </a>
+                </div>
+
+                <div class="col-md-4">
+                    <button class="btn btn-danger" type="button" (click)="onDeleteIngredient(i)"
+                        style="align-content: flex-end;"><span class="glyphicon glyphicon-remove"></span></button>
+                </div>
+
+            </div>
+        </ul>
+    </div>
+</div>

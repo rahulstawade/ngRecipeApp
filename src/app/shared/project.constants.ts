@@ -1,0 +1,5 @@
+
+    enum NavigationListValues{
+        RECIPIE,
+        SHOPPINGLIST
+    }
