@@ -1,7 +1,7 @@
 # ngRecipeApp
 Angular Project
 
-How to use :
+How to use :-
 ----------
 
 Run "npm install" inside this project folder to install all dependencies.
